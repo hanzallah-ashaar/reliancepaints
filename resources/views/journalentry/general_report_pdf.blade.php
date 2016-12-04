@@ -33,6 +33,10 @@
         <th>
             Date Posted
         </th>
+        <th>
+            Debit
+        </th>
+        <th>Credit</th>
     </tr>
     </thead>
 
@@ -42,6 +46,16 @@
             <td>{{$out-> id}}</td>
             <td>{{\App\ChartOfAccount::findOrFail( $out -> chart_of_accounts_id) -> name}}</td>
             <td>{{$out -> date_posted}}</td>
+            <td>
+                @if($out -> is_debit == 1)
+                    {{$out ->  amount}}
+                @endif
+            </td>
+            <td>
+                @if($out -> is_debit == 0)
+                    {{$out -> amount}}
+                @endif
+            </td>
         </tr>
     @endforeach
     </tbody>
