@@ -30,9 +30,12 @@
         <th>
             Account
         </th>
+        <th> Reference </th>
+        <th>Partner</th>
         <th>
             Date Posted
         </th>
+        <th>Label</th>
         <th>
             Debit
         </th>
@@ -45,7 +48,10 @@
         <tr>
             <td>{{$out-> id}}</td>
             <td>{{\App\ChartOfAccount::findOrFail( $out -> chart_of_accounts_id) -> name}}</td>
+            <td>{{\App\JournalEntry::findOrFail( $out -> journalentry_id) -> reference}}</td>
+            <td>{{\App\JournalEntry::findOrFail($out -> journalentry_id) -> partner}}</td>
             <td>{{$out -> date_posted}}</td>
+            <td>{{$out -> label}}</td>
             <td>
                 @if($out -> is_debit == 1)
                     {{$out ->  amount}}
