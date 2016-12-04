@@ -40,7 +40,7 @@
     @foreach ($output as $out)
         <tr>
             <td>{{$out-> id}}</td>
-            <td>{{$out -> chart_of_accounts_id }}</td>
+            <td>{{$out -> chart_of_accounts_id}}</td>
             <td>{{$out -> date_posted}}</td>
         </tr>
     @endforeach
