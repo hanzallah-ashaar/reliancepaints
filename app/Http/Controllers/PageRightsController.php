@@ -74,12 +74,12 @@ class PageRightsController extends Controller
      */
     public function show($id)
     {
-//        $user = User::findOrFail($id);
+        $user = User::findOrFail($id);
 //        $page = $user -> id;
 //
-////        return view('pagerights.show', compact(['user', 'page']));
+        return view('pagerights.edit', compact('user'));
 //
-        return view('pagerights.index');
+//        return view('pagerights.index');
 //
     }
 
@@ -91,10 +91,10 @@ class PageRightsController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::findOrFail($id);
-        $user = Auth::user();
-
-        return view('pagerights.edit', compact('page' ,'user'));
+//        $page = Page::findOrFail($id);
+//        $user = Auth::user();
+//
+//        return view('pagerights.edit', compact('page' ,'user'));
     }
 
     /**
@@ -104,13 +104,13 @@ class PageRightsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) // have to recheck this method.
     {
         $this->validate($request,[
 
             'user_id' => 'required|exists:users,id',
-            'new_page_id' => 'required|exists:users,id',
-            'old_page_id' => 'required|exists:users,id',
+            'new_page_id' => 'required|exists:pages,id',
+            'old_page_id' => 'required|exists:pages,id',
 
         ]);
 
@@ -131,9 +131,10 @@ class PageRightsController extends Controller
      */
     public function destroy($id)
     {
-
-        $user=User::findOrFail($id);
-        $user->page()->detach($id);
+        // need user id and the page id to be deleted.
+        // only getting the user id here.
+        $user = User::findOrFail($id);
+        $user -> page() -> detach($id);
 
         return redirect('/rights');
     }

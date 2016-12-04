@@ -35,19 +35,6 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
 
-//    if(Auth::attempt(['email' => 'hanzallah96@gmail.com', 'password' => 'bscs1234'])){
-//
-//        //return view('/admin');
-//
-//        $redirectTo = '/admin';
-//    }
-//    else{
-//
-//        //return view('welcome');
-//
-//        $redirectTo = '/welcome';
-//    }
-
 
     if (Auth::guest()){
         return view('welcome');
@@ -75,11 +62,11 @@ Route::get('/edit', 'HomeController@edit');
 
 Route::resource('/users', 'NonAdminUsersController');
 
-Route::get('/rights/{id}', function($id){
-
-    return redirect('/rights');
-
-});
+//Route::get('/rights/{id}', function($id){
+//
+//    return redirect('/rights', $id);
+//
+//});
 
 Route::resource('/rights', 'PageRightsController');
 
@@ -95,6 +82,19 @@ Route::get('errors.503', function(){
     return view('errors.503');
 
 });
+
+
+Route::resource('/journalentry', 'JournalEntryController');
+
+Route::get('/general_report/{datefrom}/{dateto}', 'JournalEntryController@general_report');
+
+Route::get('/trial_balance_report/{d}', 'JournalEntryController@trial_balance_report');
+
+//Route::get('/journalentry', function(){
+//
+//    return view ('journalentry/create');
+//
+//});
 
 //Route::get('/pagerights', function(){
 //

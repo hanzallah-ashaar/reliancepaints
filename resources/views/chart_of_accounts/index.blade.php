@@ -24,6 +24,7 @@
                                         <th>Code</th>
                                         <th>Account</th>
                                         <th>Type</th>
+                                        <th>Amount</th>
                                     </tr>
                                     @foreach($accounts as $account)
                                         <tr>
@@ -33,6 +34,7 @@
                                                 </a>
                                             </td>
                                             <td>{{$account -> type}}</td>
+                                            <td>{{$account -> total_amount}}</td>
                                         </tr>
                                     @endforeach
                                 </table>

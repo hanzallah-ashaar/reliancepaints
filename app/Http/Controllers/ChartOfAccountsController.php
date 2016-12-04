@@ -57,6 +57,7 @@ class ChartOfAccountsController extends Controller
         $account -> name = $request -> name;
         $account -> type = $request -> type;
         $account -> code = $request -> code;
+        $account -> total_amount = 0.00;
         $account -> save();
 
         return redirect('/chart_accounts');
