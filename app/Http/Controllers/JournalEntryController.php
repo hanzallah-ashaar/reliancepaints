@@ -251,10 +251,8 @@ class JournalEntryController extends Controller
     //$date_to, $date_from, $acc_to, $acc_from
     public function general_report($datefrom, $dateto){
 
-        $data1 = $datefrom;
-        $data2 = $dateto;
+        $output = DB::select("select * from journal_entry_lines where date_posted BETWEEN Date(".$datefrom.") AND Date(".$dateto.")");
 
-        $output = DB::select("select * from journal_entry_lines where date_posted BETWEEN $data1 AND $data2;");
         $pdf = App::make('dompdf.wrapper');
 
         $pdf  -> loadView('journalentry.general_report_pdf', compact('output'));
@@ -266,7 +264,12 @@ class JournalEntryController extends Controller
 
     public function trial_balance_report($d){
 
-        $output = DB::select("select chart_of_accounts_id, amount, is_debit from journal_entry_lines where date_posted = $d");
+        $da = $d;
+
+        $output = DB::select("select * from journal_entry_lines where date_posted = '.$da.';");
+        //$output = JournalEntry() -> chartofaccounts() -> where('date_posted', '=', $d) -> select('chart_of_accounts_id', 'amount', 'is_debit') -> get();
+        //$output = ChartOfAccount::find($d);
+           // return $output;
         $pdf = App::make('dompdf.wrapper');
 
         $pdf -> loadView('journalentry.trial_balance_report_pdf', compact('output'));

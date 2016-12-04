@@ -39,7 +39,8 @@
     <tbody>
     @foreach ($output as $out)
         <tr>
-            <td>{{\Illuminate\Support\Facades\DB::select('select name from chart_of_accounts where chart_of_accounts.id = journal_entry_lines.chart_of_accounts_id);')}}</td>
+            {{--<td>{{\Illuminate\Support\Facades\DB::select('select name from chart_of_accounts where chart_of_accounts.id = journal_entry_lines.chart_of_accounts_id);')}}</td>--}}
+            <td>{{$out -> chart_of_accounts_id}}</td>
             <td>
                 @if($out -> is_debit == 1)
                     {{$out ->  amount}}
