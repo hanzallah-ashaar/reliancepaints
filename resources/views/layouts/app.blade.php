@@ -55,8 +55,10 @@
                 @if(!Auth::guest())
                     <li><a href="{{url('/users')}}">Users</a></li>
                     <li><a href="{{url('/page')}}">Pages</a></li>
+                    <li><a href="{{url('/rights')}}">Page Rights</a></li>
                     <li><a href="{{url('/chart_accounts')}}">Chart Of Accounts</a></li>
                     <li><a href="{{url('/journalentry')}}">Journal Voucher</a></li>
+                    {{--<li><a href="{{url('/reports')}}"></a>Reports</li>--}}
                     {{--<li><li class="dropdown">--}}
                     {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">--}}
                     {{--{{ 'Pages' }} <span class="caret"></span>--}}
@@ -73,8 +75,6 @@
                     {{--</ul>--}}
                     {{--@endif--}}
                     {{--</li></li>--}}
-
-                    <li><a href="{{url('/rights')}}">Page Rights</a></li>
                 @endif
             </ul>
 

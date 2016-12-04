@@ -29,7 +29,7 @@
                                     @foreach($accounts as $account)
                                         <tr>
                                             <td>{{$account -> code}}</td>
-                                            <td contenteditable="true"><a href="{{route('chart_accounts.show' , $account -> id)}}">
+                                            <td contenteditable="false"><a href="{{route('chart_accounts.show' , $account -> id)}}">
                                                     {{$account -> name}}
                                                 </a>
                                             </td>
