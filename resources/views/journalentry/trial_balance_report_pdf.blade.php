@@ -10,7 +10,7 @@
 
 <head>
 
-    <h1>Profit and Loss Report</h1>
+    <h1>Trial and Balance Report</h1>
 
     <hr>
     <br>
@@ -37,23 +37,29 @@
     </thead>
 
     <tbody>
+    <?php $i = 0; ?>
+    <?php $j = 0; ?>
     @foreach ($output as $out)
         <tr>
-            {{--<td>{{\Illuminate\Support\Facades\DB::select('select name from chart_of_accounts where chart_of_accounts.id = journal_entry_lines.chart_of_accounts_id);')}}</td>--}}
-            <td>{{$out -> chart_of_accounts_id}}</td>
+            <td>{{\App\ChartOfAccount::findOrFail( $out -> chart_of_accounts_id) -> name}}</td>
             <td>
                 @if($out -> is_debit == 1)
                     {{$out ->  amount}}
+                    <?php $i = $i + $out->amount; ?>
                 @endif
             </td>
             <td>
                 @if($out -> is_debit == 0)
                     {{$out -> amount}}
+                    <?php $j = $j + $out->amount; ?>
                 @endif
             </td>
         </tr>
     @endforeach
     </tbody>
+
+    {{'Total Debit = ' . $i . '             ' . 'Total Credit = ' . $j  .  '            Balance = '. ($i-$j)}}
+
 
 </table>
 

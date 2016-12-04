@@ -40,7 +40,7 @@
     @foreach ($output as $out)
         <tr>
             <td>{{$out-> id}}</td>
-            <td>{{$out -> chart_of_accounts_id}}</td>
+            <td>{{\App\ChartOfAccount::findOrFail( $out -> chart_of_accounts_id) -> name}}</td>
             <td>{{$out -> date_posted}}</td>
         </tr>
     @endforeach
